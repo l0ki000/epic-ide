@@ -31,6 +31,7 @@ public class TestSourceFile extends BaseTestCase
         new PerlPartitioner(new Log(), doc);
 
         String expected = readFile(outFile);
+        expected = expected.replaceAll("\\n|\\r\\n|\\r", System.lineSeparator());
 
         SourceFile src = new SourceFile(new Log(), doc);
         src.parse();
