@@ -8,8 +8,12 @@ import java.util.regex.Pattern;
 import org.epic.perl.editor.test.BaseTestCase;
 import org.epic.perleditor.editors.perl.SourceParser;
 
+import org.junit.*;
+import static org.junit.Assert.*;
+
 public class TestSourceParser extends BaseTestCase
 {
+    @Test
     public void testFoo()
     {
         String text1 = "my $x = F1oo_bar::Blah::";
@@ -25,6 +29,7 @@ public class TestSourceParser extends BaseTestCase
         assertEquals("Foo->", find(pattern, text4));
     }
     
+    @Test
     public void testTwig() throws Exception
     {
         List<String> lines = readLines("workspace/EPICTest/Twig.pm");
@@ -44,6 +49,7 @@ public class TestSourceParser extends BaseTestCase
             SourceParser.DELETE_COMMENT | SourceParser.DELETE_POD);
     }
     
+    @Test
     public void testCommentPattern() throws Exception
     {
         String str =
@@ -63,6 +69,7 @@ public class TestSourceParser extends BaseTestCase
         assertFalse(m.find());
     }
     
+    @Test
     public void testPODPattern() throws Exception
     {
         String str =

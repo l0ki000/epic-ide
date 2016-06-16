@@ -46,8 +46,7 @@ public class PerlValidatorStub extends PerlValidatorBase
             {
                 List<String> ret = new ArrayList<String>();
                 ret.add(BaseTestCase.getProperty("perl"));
-                ret.add("-Itest.in");
-                ret.add("-c");
+                ret.add("-I test.in");
                 return ret;
             }
             
@@ -68,7 +67,7 @@ public class PerlValidatorStub extends PerlValidatorBase
         perlExecutor.dispose();
     }
     
-    protected void addMarker(IResource resource, Map<String, Serializable> attributes)
+    protected void addMarker(IResource resource, Map attributes)
     {                
     }
     

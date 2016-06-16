@@ -5,16 +5,14 @@ import java.util.*;
 
 import org.eclipse.core.runtime.ILog;
 
-import junit.framework.TestCase;
-
-public class BaseTestCase extends TestCase
+public class BaseTestCase
+// extends TestCase
 {
     private static final String PROPERTY_PREFIX = "org.epic.perleditor-test.";
 
     private ILog log = new Log();
 
-    public void testDummy() { }
-
+    
     /**
      * @param name a short name of the property
      * @return value of the given property from test.properties
@@ -90,7 +88,6 @@ public class BaseTestCase extends TestCase
 
     protected void setUp() throws Exception
     {
-        super.setUp();
         setUpTestProperties();
     }
 

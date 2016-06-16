@@ -4,9 +4,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.epic.perl.editor.test.BaseTestCase;
+import org.junit.Test;
+import org.junit.Assert;
+
 
 public class TestCommandLineTokenizer extends BaseTestCase
 {
+    @Test
     public void testAll() throws Exception
     {
         _test("first second third", "first,second,third");
@@ -34,13 +38,15 @@ public class TestCommandLineTokenizer extends BaseTestCase
         _test("\"trailing backslash0r\\", "trailing backslash0r\\");
         _test("\"forgotten quote", "forgotten quote");
         
-        assertTrue(CommandLineTokenizer.tokenize("   ").isEmpty());
-        assertEquals(1, CommandLineTokenizer.tokenize("  moo  ").size());        
+        Assert.assertTrue(CommandLineTokenizer.tokenize("   ").isEmpty());
+        Assert.assertEquals(1, CommandLineTokenizer.tokenize("  moo  ").size());
     }
     
     private void _test(String in, String out)
     {        
         List<String> ret = CommandLineTokenizer.tokenize(in);
+        Assert.assertFalse(ret.isEmpty());
+        
         StringBuffer buf = new StringBuffer();
 
         for (Iterator<String> i = ret.iterator(); i.hasNext();)
@@ -48,6 +54,6 @@ public class TestCommandLineTokenizer extends BaseTestCase
             buf.append(i.next());
             if (i.hasNext()) buf.append(',');
         }
-        assertEquals(out, buf.toString());
+        Assert.assertEquals(out, buf.toString());
     }
 }

@@ -2,8 +2,12 @@ package org.epic.perleditor.editors.util;
 
 import org.epic.perl.editor.test.BaseTestCase;
 
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 public class TestPerlValidatorErrors extends BaseTestCase
 {
+    @Test
     public void testWarning() throws Exception
     {
         PerlValidatorErrors errors = new PerlValidatorErrors();        

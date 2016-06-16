@@ -4,9 +4,13 @@ import org.eclipse.jface.text.*;
 import org.epic.perl.editor.test.BaseTestCase;
 import org.epic.perl.editor.test.Log;
 
+import org.junit.Test;
+import org.junit.Assert;
+
 public class TestPerlPartitioner extends BaseTestCase
 {
     // this test expects unix newlines
+    @Test
     public void testSyntax() throws Exception
     {
         Document doc = new Document(readFile("workspace/EPICTest/syntax.pl").replace("\r",""));
@@ -32,7 +36,7 @@ public class TestPerlPartitioner extends BaseTestCase
         }
         
         String expected = readFile("test.in/TestPerlPartitioner-expected.txt").replace("\r","");
-        assertEquals(expected, buf.toString());
+        Assert.assertEquals(expected, buf.toString());
         //System.err.println(buf);
     }
 }

@@ -2,8 +2,12 @@ package org.epic.core.util;
 
 import org.epic.perl.editor.test.BaseTestCase;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 public class TestPerlExecutableUtilities extends BaseTestCase
 {
+    @Test
     public void testTranslatePathForCygwin() throws Exception
     {
         _test("C:\\Program Files\\foobar", "/cygdrive/c/program files/foobar");
@@ -13,8 +17,10 @@ public class TestPerlExecutableUtilities extends BaseTestCase
         _test("", "");
     }
     
+    // TODO more, more tests here!!!
+    
     private void _test(String in, String out)
     {
-        assertEquals(out, PerlExecutableUtilities.translatePathForCygwin(in));
+        Assert.assertEquals(out, PerlExecutableUtilities.translatePathForCygwin(in));
     }
 }

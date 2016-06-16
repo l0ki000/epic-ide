@@ -10,11 +10,16 @@ import antlr.TokenStreamException;
 import org.eclipse.jface.text.Document;
 import org.epic.perl.editor.test.BaseTestCase;
 
+import static org.hamcrest.CoreMatchers.*;
+
+import org.junit.*;
+
 public class TestPerlMultiLexer extends BaseTestCase
 {
     private Map<Integer, String> tokenNames;
     private List<Integer> tokenCounts = new ArrayList<Integer>();
     
+    @Test
     public void testGlob() throws Exception
     {
         _testFile(
@@ -22,6 +27,7 @@ public class TestPerlMultiLexer extends BaseTestCase
             new PrintWriter(new OutputStreamWriter(System.out), true));   
     }
 
+    @Test
     public void testHeredoc() throws Exception
     {
         _testFile(
@@ -29,17 +35,21 @@ public class TestPerlMultiLexer extends BaseTestCase
             new PrintWriter(new OutputStreamWriter(System.out), true));   
     }
     
-    /*public void testSelectedCase() throws Exception
+    @Ignore ("Commented out by author")
+    @Test
+    public void testSelectedCase() throws Exception
     {
         _testFile(
             "workspace/EPICTest/format2.pl",
             new PrintWriter(new OutputStreamWriter(System.out), true));   
-    }*/
+    }
     
+    @Test
     public void testAll() throws Exception
     {   
-        if (!"true".equals(getProperty("TestPerlMultiLexer.enabled"))) return;
-
+        Assume.assumeTrue("Skipping TestPerlMultiLexer by configured property",
+                        Boolean.parseBoolean((getProperty("TestPerlMultiLexer.enabled"))));
+        
         BufferedReader r = null;
         PrintWriter w = null;
         String path = null;
@@ -91,16 +101,16 @@ public class TestPerlMultiLexer extends BaseTestCase
         Token t;
         while ((t = nextToken(selector, path)).getType() != Token.EOF_TYPE)
         {
-            //System.err.println(path + ": " + i + ":" + token2String(t) + " " + t.getClass());
+            // System.err.println(path + ": " + i + ":" + token2String(t) + " " + t.getClass());
             i++;
         }
         tokenCounts.add(new Integer(i));
     }
     
-    protected void setUp()
-        throws Exception
+    @Before
+    public void setUp() throws Exception
     {
-        super.setUp();        
+        super.setUp();
         setUpTokenNames();
     }
     
@@ -108,15 +118,15 @@ public class TestPerlMultiLexer extends BaseTestCase
     {
         tokenNames = new HashMap<Integer, String>();
         URL tokensURL = PerlLexer.class.getResource("PerlTokenTypes.txt");
-        assertNotNull(tokensURL);
+        Assert.assertNotNull(tokensURL);
         List<String> lines = readLines(tokensURL.getPath());
 
         for (int i = 2; i < lines.size(); i++)
         {
             String line = lines.get(i);
-            StringTokenizer st = new StringTokenizer(line, "=");            
+            StringTokenizer st = new StringTokenizer(line, "=");
             String name = st.nextToken();
-            Integer value = new Integer(st.nextToken());            
+            Integer value = new Integer(st.nextToken());
             tokenNames.put(value, name);
         }
     }

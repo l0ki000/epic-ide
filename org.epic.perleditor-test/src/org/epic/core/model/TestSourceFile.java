@@ -4,14 +4,15 @@ import java.io.IOException;
 import java.util.Iterator;
 
 import org.eclipse.jface.text.Document;
-import org.eclipse.jface.text.IDocument;
 import org.epic.perl.editor.test.BaseTestCase;
 import org.epic.perl.editor.test.Log;
-import org.epic.perleditor.editors.PartitionTypes;
 import org.epic.perleditor.editors.PerlPartitioner;
+import org.junit.Test;
+import org.junit.Assert;
 
 public class TestSourceFile extends BaseTestCase
 {
+    @Test
     public void testOutline() throws Exception
     {
         // Regression test for subroutine-to-package mappings
@@ -69,6 +70,6 @@ public class TestSourceFile extends BaseTestCase
         pw.close();
         */
         
-        assertEquals(expected, buf.toString());
+        Assert.assertEquals(expected, buf.toString());
     }
 }
