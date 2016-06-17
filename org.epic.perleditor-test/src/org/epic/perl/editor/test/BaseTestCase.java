@@ -6,7 +6,6 @@ import java.util.*;
 import org.eclipse.core.runtime.ILog;
 
 public class BaseTestCase
-// extends TestCase
 {
     private static final String PROPERTY_PREFIX = "org.epic.perleditor-test.";
 

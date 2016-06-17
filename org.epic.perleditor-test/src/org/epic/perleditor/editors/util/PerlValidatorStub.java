@@ -34,7 +34,8 @@ public class PerlValidatorStub extends PerlValidatorBase
             {
                 if (e.getMessage().indexOf("Broken pipe") != -1 ||
                     e.getMessage().indexOf("Die Pipe ") != -1 ||
-                    e.getMessage().indexOf("The pipe has been ended") != -1)
+                    e.getMessage().indexOf("The pipe has been ended") != -1 ||
+                    e.getMessage().indexOf("Stream closed") != -1)
                 {
                     PerlValidatorStub.gotBrokenPipe = true;
                 }
